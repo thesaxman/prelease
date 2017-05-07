@@ -1,0 +1,55 @@
+#This is a program by Ali AlObaidan to collect data on temperatures in a month
+#The temperatures are taken at midday and midnight
+#The averages of the midday temperatures and midnight temperatues are also calculated
+#The highest and lowest temperatures of midday and midnights are also taken
+
+#Lots of declaration
+
+Days = 30
+Midday = []
+Midnight = []
+HighValidation = 60
+LowValidation = -50
+
+
+#inputing the temperatures
+for count in range (Days):
+#this is declared here so that the validation works 
+    TempMidday =61.0
+    TempMidnight = 61.0
+
+#This is the validation for if midday value is in normal range
+    while TempMidday<LowValidation or TempMidday>HighValidation:
+        try:
+            TempMidday = float(input("input midday temperature"))
+        except ValueError:
+            continue
+        if TempMidday<LowValidation or TempMidday>HighValidation:
+            print("Error: Temperature out of range.")
+    while TempMidnight<LowValidation or TempMidnight>HighValidation:
+        try:
+            TempMidnight = float(input("input midnight temperature"))
+        except ValueError:
+            continue
+        if TempMidnight<LowValidation or TempMidnight>HighValidation:
+            print("Error: Temperature out of range.")
+#places temperatures into arrays
+    Midday.append(TempMidday)
+    Midnight.append(TempMidnight)
+
+#Here to calculate averages
+MidnightAve= sum(Midnight)/len(Midnight)
+MiddayAve= sum(Midday)/len(Midday)
+
+print("/\/\/\/\/\/\/\/\/Averages\/\/\/\/\/\/\/\/\"")
+
+print("The average of Midday temperature temperatures is ", MiddayAve)
+print("The average of Midnight temperature temperatures is ", MidnightAve)
+
+#Here is to calculate highest midday temperature and lowest midnight temperature
+#<array>.index is for finding the place of the temperatures in the array
+HighMidday = Midday.index(max(Midday))
+LowMidnight = Midnight.index(min(Midnight))
+
+print("The highest temperature for midday values is", Midday[HighMidday],"Degrees and it was on day", HighMidday+1)
+print("The lowest temperature for midnight values is", Midnight[LowMidnight],"Degrees and it was on day", LowMidnight+1)
